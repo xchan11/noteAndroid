@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">note</string>
+    <string name="app_name">个人生活管理</string>
+    <string name="LOGOUT">"退出登录"</string>
 </resources>

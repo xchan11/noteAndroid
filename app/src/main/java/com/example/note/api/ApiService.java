@@ -36,6 +36,10 @@ public interface ApiService {
     @POST("user/login")
     LiveData<RequestType<LoginUser>> login(@Body RequestBody body);
 
+    /** “我的”页面 获取当前登录用户信息，需要登录 */
+    @GET("user/info")
+    LiveData<RequestType<LoginUser>> getUserInfo();
+
     /** 退出登录，需要登录；成功后本地需 cookieJar.clear() */
     @DELETE("user/logout")
     LiveData<RequestType<Void>> logout();

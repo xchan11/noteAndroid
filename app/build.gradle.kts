@@ -25,7 +25,7 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"http://192.168.101.99:8080/\"")
+            buildConfigField("String", "BASE_URL", "\"http://192.168.162.114:8080/\"")
             // 如需允许明文（可选）：isMinifyEnabled = false
         }
         release {
