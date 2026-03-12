@@ -3,7 +3,6 @@ package com.example.note.api;
 import androidx.lifecycle.LiveData;
 
 import com.example.note.model.LoginUser;
-import com.example.note.model.RegisterReq;
 import com.example.note.model.RequestType;
 import com.example.note.model.UpdateInfoReq;
 import com.example.note.model.UpdatePwdReq;
@@ -31,7 +30,7 @@ public interface ApiService {
 
     /** 用户注册，无需登录 */
     @POST("user/register")
-    LiveData<RequestType<LoginUser>> register(@Body RegisterReq body);
+    LiveData<RequestType<LoginUser>> register(@Body RequestBody body);
 
     /** 用户登录，无需登录；成功时后端 Set-Cookie: JSESSIONID。请求体：{"phone":"xxx","password":"xxx"} */
     @POST("user/login")

@@ -17,6 +17,9 @@
             android:name=".ui.user.LoginActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.user.RegisterActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"

@@ -40,5 +40,31 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etPassword" />
+
+        <LinearLayout
+            android:id="@+id/layoutToRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnLogin">
+
+            <TextView
+                android:id="@+id/tvNoAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="还没有账号？"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/tvRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="点击注册"
+                android:textColor="#1677FF" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

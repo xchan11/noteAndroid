@@ -26,6 +26,10 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             val password = dataBinding.etPassword.text.toString().trim()
             viewModel.login(this, phone, password)
         }
+
+        dataBinding.tvRegister.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
     }
 
     override fun initData() {
