@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Note" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- 使用 AppCompat 兼容主题，满足 AppCompatActivity 要求 -->
+    <style name="Theme.Note" parent="Theme.AppCompat.Light.NoActionBar" />
 </resources>
