@@ -1,6 +1,6 @@
-package com.example.note.utils.json
+package com.example.note.utils.cookie_tool
 
-import com.example.note.utils.json.JSONBodyBuilder.toRequestBody
+import com.example.note.utils.cookie_tool.JSONBodyBuilder.toRequestBody
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import org.json.JSONArray
@@ -36,6 +36,9 @@ object JSONBodyBuilder {
             this.toString()
         )
     }
+
+    /** 与参考项目一致：链式结尾，转成 RequestBody */
+    fun JSONObject.submit(): RequestBody = toRequestBody()
 }
 
 /** Map -> JSON RequestBody */

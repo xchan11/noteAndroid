@@ -2,6 +2,12 @@ package com.example.note.api;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.note.model.LoginUser;
+import com.example.note.model.RegisterReq;
+import com.example.note.model.RequestType;
+import com.example.note.model.UpdateInfoReq;
+import com.example.note.model.UpdatePwdReq;
+
 import java.util.List;
 
 import okhttp3.RequestBody;
@@ -17,11 +23,38 @@ import retrofit2.http.Query;
 
 /**
  * api接口统一管理
+ * 鉴权：基于 Cookie/Session（JSESSIONID）。200 成功，400 业务错误，401 未登录/会话过期，500 系统错误。
  */
 public interface ApiService {
-    /**
-     * **************************公共接口**********************************************************
-     * */
+
+    // ==================== 用户相关（与后端文档一致） ====================
+
+    /** 用户注册，无需登录 */
+    @POST("user/register")
+    LiveData<RequestType<LoginUser>> register(@Body RegisterReq body);
+
+    /** 用户登录，无需登录；成功时后端 Set-Cookie: JSESSIONID。请求体：{"phone":"xxx","password":"xxx"} */
+    @POST("user/login")
+    LiveData<RequestType<LoginUser>> login(@Body RequestBody body);
+
+    /** 退出登录，需要登录；成功后本地需 cookieJar.clear() */
+    @DELETE("user/logout")
+    LiveData<RequestType<Void>> logout();
+
+    /** 注销账号（物理删除），需要登录；成功后本地需 cookieJar.clear() */
+    @DELETE("user/cancel")
+    LiveData<RequestType<Void>> cancel();
+
+    /** 修改基本信息，需要登录 */
+    @PUT("user/update-info")
+    LiveData<RequestType<Void>> updateInfo(@Body UpdateInfoReq body);
+
+    /** 修改密码，需要登录 */
+    @PUT("user/update-pwd")
+    LiveData<RequestType<Void>> updatePwd(@Body UpdatePwdReq body);
+
+    // ==================== 以下为旧项目注释，可按需恢复 ====================
+
     //统一登录接口(√√√)
 //    @POST("user/login")
 //    LiveData<RequestType<LoginInfo>> loginByPhoneAndPwd(@Body RequestBody body);

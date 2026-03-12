@@ -1,6 +1,7 @@
 package com.example.note.utils
 
 import android.content.Context
+import com.example.note.MyApplication
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -11,20 +12,20 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.example.note.BuildConfig
 import com.example.note.model.RequestType
+//import com.example.note.BuildConfig
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
 /** ---------- 日志 & Toast ---------- */
 
-fun String?.logD(tag: String = "CommonUtils"): String {
-    if (BuildConfig.DEBUG) {
-        Log.d(tag, this ?: "null")
-    }
-    return this ?: ""
-}
+//fun String?.logD(tag: String = "CommonUtils"): String {
+//    if (BuildConfig.DEBUG) {
+//        Log.d(tag, this ?: "null")
+//    }
+//    return this ?: ""
+//}
 
 fun String?.toast(context: Context): String {
     Toast.makeText(context, this ?: "null", Toast.LENGTH_SHORT).show()
@@ -35,6 +36,15 @@ fun String?.toastLong(context: Context): String {
     Toast.makeText(context, this ?: "null", Toast.LENGTH_LONG).show()
     return this ?: ""
 }
+
+/** 无参 Toast，使用 appContext（参考项目 toastCover 风格） */
+fun String?.toastCover() {
+    val ctx = MyApplication.appContext ?: return
+    Toast.makeText(ctx, this ?: "", Toast.LENGTH_SHORT).show()
+}
+
+/** 网络返回 code==200 表示成功（与后端约定一致） */
+fun RequestType<*>?.isOk(): Boolean = this != null && this.code == 200
 
 /** ---------- View 显示/隐藏 ---------- */
 
@@ -104,15 +114,14 @@ fun ImageView.loadRounded(url: String?, radiusDp: Int, @DrawableRes placeholder:
 /** ---------- 网络返回通用判断 ---------- */
 
 /**
- * 配合形如：data class RequestType<T>(val code:Int, val message:String, val data:T?)
- * code == 0 表示成功，其它为失败（你可以按后端约定修改）。
+ * 带 Toast 的 isOk（原逻辑保留，code 按后端约定可改为 200）
  */
-fun <T> RequestType<T>?.isOk(showToast: Boolean = true, context: Context? = null): Boolean {
+fun <T> RequestType<T>?.isOkWithToast(showToast: Boolean = true, context: Context? = null): Boolean {
     if (this == null) {
         if (showToast && context != null) "系统异常".toast(context)
         return false
     }
-    return if (code == 0) {
+    return if (code == 200) {
         true
     } else {
         if (showToast && context != null) (message ?: "请求失败").toast(context)
