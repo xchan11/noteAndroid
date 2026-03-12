@@ -82,11 +82,11 @@ class RegisterActivity : BaseActivity<RegisterViewModel, ActivityRegisterBinding
     ) {
         if (isVisible) {
             editText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            imageView.setImageResource(android.R.drawable.ic_menu_view)
+            imageView.setImageResource(R.drawable.ic_eye)
         } else {
             editText.inputType =
                 InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-            imageView.setImageResource(android.R.drawable.ic_menu_view)
+            imageView.setImageResource(R.drawable.ic_eye_off)
         }
         editText.setSelection(editText.text?.length ?: 0)
     }
