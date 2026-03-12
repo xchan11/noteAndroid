@@ -9,6 +9,7 @@ import com.example.note.R
 import com.example.note.base.BaseActivity
 import com.example.note.databinding.ActivityRegisterBinding
 import com.example.note.utils.toastCover
+import com.example.note.viewmodel.RegisterViewModel
 
 class RegisterActivity : BaseActivity<RegisterViewModel, ActivityRegisterBinding>() {
 

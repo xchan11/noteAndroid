@@ -1,9 +1,8 @@
-package com.example.note.ui.user
+package com.example.note.viewmodel
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.note.MyApplication
 import com.example.note.MyApplication.apiService
 import com.example.note.base.BaseViewModel
 import com.example.note.model.LoginUser

@@ -1,10 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#49B9AD</color>
+
+    <color name="majorityColor">#E4D8A236</color>
+    <color name="white">#FFFFFF</color>
+    <color name="card">#E0F3E5D6</color>
+
+    <color name="mainBg">#EEEAE5</color>
+    <color name="deepRed">#8E2324</color>
+
+    <color name="greyText">#A4A0A4</color>
+    <color name="primary_grey_bg">#f6f6f6</color>
+    <color name="fa">#fafafa</color>
+    <color name="white1">#FBF7F2</color>
+    <color name="white2">#F3EEE8</color>
+    <color name="white3">#E8E1D9</color>
+    <color name="white4">#EEEEEE</color>
+    <color name="white5">#DDDDDD</color>
+
+    <color name="transparent">#00000000</color>
+
+    <color name="main">#2EECD7</color>
+    <color name="mainLight">#49B9AD</color><!-- 主颜色 -->
+    <color name="mainLight_500">#42a79c</color><!-- 主颜色 -->
+    <color name="mainLight_700">#3a948a</color><!-- 主颜色 -->
+    <color name="mainLight2">#E1FFFCF8</color><!-- 主颜色 -->
+    <color name="mainLight3">#E1D5C19E</color><!-- 主颜色 -->
+    <color name="mainLight4">#E1D7BC8D</color><!-- 主颜色 -->
+    <color name="mainLight5">#00a6ac</color>
+    <color name="devivor">#E1B37B14</color>
+    <color name="divider">#ffd2d2d2</color>
+    <color name="waterColor">#afdfe4</color>
+    <color name="blankColor">#90d7ec</color>
+    <color name="bg_login">#174325</color>
+    <color name="matcha">#95BF90</color>
+    <color name="role_text2">#88C695</color>
+    <color name="hover">#e5efd9</color>
+
+
+    <color name="grey">#d3d7d4</color>
+    <color name="grey1">#EDDDDEDD</color>
+    <color name="grey2">#C9EBEEEC</color>
+    <color name="grey3">#B2E4E4E4</color>
+
+    <color name="viewLine">#E2DEE2</color>
+    <color name="bg_versatile">#f2f2f2</color>
+
+    <color name="actionbar_pres_color">#2C2C2C</color>
+    <color name="select_question_color">#08afa8</color>
+
+    <color name="reading">#E6D6B8</color>
+
+    <color name="black">#000000</color>
+    <color name="black1">#1E1E1C</color>
+    <color name="black2">#252525</color>
+    <color name="black3">#3D3D3D</color>
+    <color name="black4">#474747</color>
+    <color name="black5">#6C6C6C</color>
+    <color name="black6">#D97D7D7D</color>
+    <color name="black7">#B38C8C8C</color>
+    <color name="bar_grey">#5A5555</color>
+    <color name="send_file_divider_color">#dcdcdc</color>
+    <color name="chat_item_file_size">#989898</color>
+    <color name="layoutBG">#ECE2DC</color>
+
+
+    <color name="card2">#BEF8F7F5</color>
+    <color name="celebrity_deeds_bg">#DDD0CA</color>
+    <color name="c3f4247">#3f4247</color>
+    <color name="spilt_line">#CFCFCF</color>
+
+    <color name="not_so_black">#252323</color>
+
+    <color name="gray">#808080</color>
+    <color name="gray5">#f2f4f4</color>
+    <color name="input_et">#ADFFFFFF</color>
+    <color name="me_split_line_color">#d0d0d0</color>
+    <color name="red">#C12929</color>
+    <color name="red2">#F24B4B</color>
+    <color name="orange">#CD7726</color>
+    <color name="yellow">#E6C830</color>
+    <color name="green">#639D47</color>
+    <color name="blueGreen">#38C5B4</color>
+    <color name="blue">#3771CD</color>
+    <color name="blue2">#33b5e5</color>
+    <color name="blue3">#4878C4</color>
+    <color name="blue4">#3771CD</color>
+    <color name="blue5">#3771CD</color>
+    <color name="purple">#6D50A3</color>
+    <color name="shopping_cart_bar_color">#34332f</color>
+
+    <color name="menu_item_click_color">#346fc3</color>
+    <color name="text_blue">#1F3E58</color>
+
+
+    <color name="bound_text_color">#a07d35</color>
+    <color name="stroke_color">#E6C830</color>
+    <color name="background_color">#FFFFFF</color>
+
+
+    <color name="press">#e8e8e8</color>
+    <color name="text_black_color">#333333</color>
+
+    <color name="bg_half_blue">#733791FF</color>
+    <color name="bg_half_pink">#73FFBABA</color>
+    <color name="bg_half_green">#737CF100</color>
+
+    <color name="color_family_disable_click">#2C000000</color>
+    <color name="color_family_gray_light">#5cdcdcdc</color>
+
+
+    <color name="main_green0">#CFEBCB</color>
+    <color name="main_green">#CBE0B3</color>
+    <color name="main_green1">#C1E3BB</color>
+    <color name="main_green2">#90C89C</color>
+    <color name="main_green3">#90C8AE</color>
+    <color name="main_green4">#AEC890</color>
+    <color name="main_green5">#98C8A6</color>
+    <color name="main_green6">#90C8A0</color>
+    <color name="main_green7">#2A6C4A</color>
+    <color name="main_green8">#334E39</color>
+
+
+    <color name="toolbar_color">#B6DDF3</color>
+    <color name="toolbar_color2">#95D2BC</color>
+    <color name="main_blue0">#CBEBE9</color>
+    <color name="main_blue">#B3E0C7</color>
+    <color name="main_blue2">#90C8B3</color>
+    <color name="main_blue3">#90C8AE</color>
+    <color name="main_blue4">#90C8BD</color>
+    <color name="main_blue5">#90C8A5</color>
+    <color name="main_blue6">#59A78A</color>
+    <color name="main_blue7">#609F87</color>
+
+
+    <color name="main_bg_chat">#EFF1F1</color>
+    <color name="main_bg_input_menu">#D7E4DF</color>
+
+    <color name="main_blue_z">#2A5058</color>
+    <color name="reading_green">#AED2B7</color>
+
+    <!--    个人信息界面按钮颜色 -->
+    <color name="ic_info_drawable_color">#61C4C1</color>
+
+    <color name="purple1">#9791C5</color>
+    <color name="purple2">#847FAA</color>
 </resources>

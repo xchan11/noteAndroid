@@ -1,4 +1,4 @@
-package com.example.note.ui.user
+package com.example.note.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.LifecycleOwner

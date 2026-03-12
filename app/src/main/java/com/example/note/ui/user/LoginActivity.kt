@@ -8,6 +8,7 @@ import com.example.note.MyApplication
 import com.example.note.R
 import com.example.note.base.BaseActivity
 import com.example.note.databinding.ActivityLoginBinding
+import com.example.note.viewmodel.LoginViewModel
 
 /**
  * 登录页，模仿参考项目写法：initView 里 cookieJar.clear、点击读输入框调 viewModel.login(lifecycle, phone, pwd)。
