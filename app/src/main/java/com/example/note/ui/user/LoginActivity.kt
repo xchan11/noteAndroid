@@ -2,6 +2,9 @@ package com.example.note.ui.user
 
 import android.content.Context
 import android.content.Intent
+import android.text.InputType
+import android.widget.EditText
+import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import com.example.note.MainActivity
 import com.example.note.MyApplication
@@ -14,6 +17,8 @@ import com.example.note.viewmodel.LoginViewModel
  * 登录页，模仿参考项目写法：initView 里 cookieJar.clear、点击读输入框调 viewModel.login(lifecycle, phone, pwd)。
  */
 class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
+
+    private var isPwdVisible = false
 
     override fun getLayoutId(): Int = R.layout.activity_login
 
@@ -31,6 +36,11 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         dataBinding.tvRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+
+        dataBinding.ivPwdToggle.setOnClickListener {
+            togglePasswordVisibility(dataBinding.etPassword, dataBinding.ivPwdToggle, isPwdVisible)
+            isPwdVisible = !isPwdVisible
+        }
     }
 
     override fun initData() {
@@ -40,6 +50,22 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 finish()
             }
         }
+    }
+
+    private fun togglePasswordVisibility(
+        editText: EditText,
+        imageView: ImageView,
+        isVisible: Boolean
+    ) {
+        if (isVisible) {
+            editText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            imageView.setImageResource(R.drawable.ic_eye)
+        } else {
+            editText.inputType =
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            imageView.setImageResource(R.drawable.ic_eye_off)
+        }
+        editText.setSelection(editText.text?.length ?: 0)
     }
 
     companion object {

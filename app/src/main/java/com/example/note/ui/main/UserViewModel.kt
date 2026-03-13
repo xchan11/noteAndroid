@@ -8,12 +8,16 @@ import com.example.note.auth.AuthPrefs
 import com.example.note.base.BaseViewModel
 import com.example.note.model.LoginUser
 import com.example.note.model.RequestType
+import com.example.note.model.UpdateInfoReq
 import com.example.note.utils.isOk
 import com.example.note.utils.toastCover
 
 class UserViewModel : BaseViewModel() {
 
     val userInfo = MutableLiveData<LoginUser?>()
+    val updateInfoResult = MutableLiveData<RequestType<Void>?>()
+    val logoutResult = MutableLiveData<RequestType<Void>?>()
+    val cancelResult = MutableLiveData<RequestType<Void>?>()
 
     private fun requestUserInfo(): LiveData<RequestType<LoginUser>> {
         return MyApplication.apiService.getUserInfo()
@@ -32,6 +36,28 @@ class UserViewModel : BaseViewModel() {
                 }
                 result?.message.toastCover()
             }
+        }
+    }
+
+    /** 修改基本信息 */
+    fun updateInfo(owner: androidx.lifecycle.LifecycleOwner, username: String, phone: String) {
+        val body = UpdateInfoReq(username, phone)
+        MyApplication.apiService.updateInfo(body).observe(owner) {
+            updateInfoResult.postValue(it)
+        }
+    }
+
+    /** 退出登录 */
+    fun requestLogout(owner: androidx.lifecycle.LifecycleOwner) {
+        MyApplication.apiService.logout().observe(owner) {
+            logoutResult.postValue(it)
+        }
+    }
+
+    /** 注销账号 */
+    fun requestCancel(owner: androidx.lifecycle.LifecycleOwner) {
+        MyApplication.apiService.cancel().observe(owner) {
+            cancelResult.postValue(it)
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.example.note.ui.main
 
+import android.app.AlertDialog
 import android.content.Intent
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.note.MyApplication
 import com.example.note.R
@@ -27,16 +29,31 @@ class UserFragment : BaseFragment<UserViewModel, FragmentUserBinding>() {
         dataBinding.itemCancelAccount.setTitle("注销账号")
 
         dataBinding.itemEditInfo.setOnClickListener {
-            "TODO: 跳转到修改信息页面".toastCover()
+            val name = dataBinding.tvUserNameValue.text.toString()
+            val phone = dataBinding.tvPhoneValue.text.toString()
+            parentFragmentManager.beginTransaction()
+                .replace(
+                    R.id.fl_fragment_container,
+                    EditInfoFragment.newInstance(name, phone)
+                )
+                .addToBackStack(null)
+                .commit()
         }
         dataBinding.itemChangePassword.setOnClickListener {
-            "TODO: 跳转到修改密码页面".toastCover()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fl_fragment_container, ChangePwdFragment())
+                .addToBackStack(null)
+                .commit()
         }
         dataBinding.itemLogout.setOnClickListener {
             handleLogout()
         }
         dataBinding.itemCancelAccount.setOnClickListener {
-            "TODO: 调用 /user/cancel 注销账号".toastCover()
+            handleCancelAccount()
+        }
+
+        dataBinding.btLoginOut.setOnClickListener {
+            handleLogout()
         }
     }
 
@@ -51,11 +68,43 @@ class UserFragment : BaseFragment<UserViewModel, FragmentUserBinding>() {
     }
 
     private fun handleLogout() {
-        AuthPrefs.setLoggedIn(requireContext(), false)
-        MyApplication.cookieJar.clear()
-        "已退出登录".toastCover()
-        startActivity(Intent(requireContext(), LoginActivity::class.java))
-        requireActivity().finish()
+        AlertDialog.Builder(requireContext())
+            .setMessage("是否退出账号？")
+            .setPositiveButton("确定") { _, _ ->
+                viewModel.requestLogout(viewLifecycleOwner)
+                viewModel.logoutResult.observe(viewLifecycleOwner) { result ->
+                    if (result == null) return@observe
+                    result.message.toastCover()
+                    if (result.code == 200) {
+                        AuthPrefs.setLoggedIn(requireContext(), false)
+                        MyApplication.cookieJar.clear()
+                        startActivity(Intent(requireContext(), LoginActivity::class.java))
+                        requireActivity().finish()
+                    }
+                }
+            }
+            .setNegativeButton("取消", null)
+            .show()
+    }
+
+    private fun handleCancelAccount() {
+        AlertDialog.Builder(requireContext())
+            .setMessage("是否注销账号？")
+            .setPositiveButton("确定") { _, _ ->
+                viewModel.requestCancel(viewLifecycleOwner)
+                viewModel.cancelResult.observe(viewLifecycleOwner) { result ->
+                    if (result == null) return@observe
+                    result.message.toastCover()
+                    if (result.code == 200) {
+                        AuthPrefs.setLoggedIn(requireContext(), false)
+                        MyApplication.cookieJar.clear()
+                        startActivity(Intent(requireContext(), LoginActivity::class.java))
+                        requireActivity().finish()
+                    }
+                }
+            }
+            .setNegativeButton("取消", null)
+            .show()
     }
 }
 
