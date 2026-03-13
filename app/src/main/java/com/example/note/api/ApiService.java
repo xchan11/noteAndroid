@@ -3,6 +3,7 @@ package com.example.note.api;
 import androidx.lifecycle.LiveData;
 
 import com.example.note.model.LoginUser;
+import com.example.note.model.Note;
 import com.example.note.model.RequestType;
 import com.example.note.model.UpdateInfoReq;
 import com.example.note.model.UpdatePwdReq;
@@ -55,6 +56,28 @@ public interface ApiService {
     /** 修改密码，需要登录 */
     @PUT("user/update-pwd")
     LiveData<RequestType<Void>> updatePwd(@Body UpdatePwdReq body);
+
+    // ==================== 日程 Note ====================
+
+    /** 获取全部日程（需要登录） */
+    @GET("note/list")
+    LiveData<RequestType<List<Note>>> getNoteList();
+
+    /** 新增日程（需要登录） */
+    @POST("note/add")
+    LiveData<RequestType<Note>> addNote(@Body RequestBody body);
+
+    /** 编辑日程（需要登录） */
+    @PUT("note/update")
+    LiveData<RequestType<Note>> updateNote(@Body RequestBody body);
+
+    /** 更新完成状态（需要登录） */
+    @PUT("note/updateStatus")
+    LiveData<RequestType<Void>> updateNoteStatus(@Body RequestBody body);
+
+    /** 删除日程（需要登录） */
+    @DELETE("note/delete")
+    LiveData<RequestType<Void>> deleteNote(@Query("noteId") int noteId);
 
     // ==================== 以下为旧项目注释，可按需恢复 ====================
 
