@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.note.MainActivity
 import com.example.note.R
 import com.example.note.base.BaseFragment
 import com.example.note.databinding.FragmentNoteBinding
@@ -111,6 +112,7 @@ class NoteFragment : BaseFragment<NoteViewModel, FragmentNoteBinding>() {
 
     override fun onResume() {
         super.onResume()
+        (activity as? MainActivity)?.setBottomBarVisible(true)
         // 数据一致性兜底逻辑：页面可见时静默拉全量同步（失败不提示）
         viewModel.loadAll(showToastOnFail = false)
     }

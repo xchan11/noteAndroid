@@ -5,6 +5,7 @@ import android.text.InputType
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
+import com.example.note.MainActivity
 import com.example.note.MyApplication
 import com.example.note.R
 import com.example.note.auth.AuthPrefs
@@ -76,6 +77,11 @@ class ChangePwdFragment : BaseFragment<ChangePwdViewModel, FragmentChangePwdBind
                 requireActivity().finish()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as? MainActivity)?.setBottomBarVisible(false)
     }
 
     private fun togglePasswordVisibility(

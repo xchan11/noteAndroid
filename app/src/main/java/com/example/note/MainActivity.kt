@@ -1,5 +1,6 @@
 package com.example.note
 
+import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.note.base.BaseNoViewModelActivity
 import com.example.note.databinding.ActivityMainBinding
@@ -57,6 +58,14 @@ class MainActivity : BaseNoViewModelActivity<ActivityMainBinding>() {
         dataBinding.bnv.onTabSelectedListener = {
             switchFragment(it)
         }
+    }
+
+    /** 仅四个主 Tab 页面显示底部栏，其它 Fragment 隐藏 */
+    fun setBottomBarVisible(visible: Boolean) {
+        val v = if (visible) View.VISIBLE else View.GONE
+        dataBinding.bnv.visibility = v
+        // 分割线一起控制
+        dataBinding.view6.visibility = v
     }
 
     private fun getFragment(fragmentIndex: Int): Fragment = fragmentList[fragmentIndex]

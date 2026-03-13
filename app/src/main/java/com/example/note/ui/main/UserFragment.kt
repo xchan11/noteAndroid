@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.note.MainActivity
 import com.example.note.MyApplication
 import com.example.note.R
 import com.example.note.auth.AuthPrefs
@@ -65,6 +66,11 @@ class UserFragment : BaseFragment<UserViewModel, FragmentUserBinding>() {
             }
         }
         viewModel.loadUserInfo()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as? MainActivity)?.setBottomBarVisible(true)
     }
 
     private fun handleLogout() {

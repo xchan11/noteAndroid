@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
+import com.example.note.MainActivity
 import com.example.note.R
 import com.example.note.base.BaseFragment
 import com.example.note.databinding.FragmentEditInfoBinding
@@ -47,6 +48,11 @@ class EditInfoFragment : BaseFragment<UserViewModel, FragmentEditInfoBinding>() 
                 parentFragmentManager.popBackStack()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as? MainActivity)?.setBottomBarVisible(false)
     }
 
     companion object {

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.note.MainActivity
 
 class GoodsFragment : Fragment() {
     override fun onCreateView(
@@ -22,6 +23,11 @@ class GoodsFragment : Fragment() {
             text = "物品"
             textSize = 20f
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as? MainActivity)?.setBottomBarVisible(true)
     }
 }
 

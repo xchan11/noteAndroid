@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import com.example.note.MainActivity
 import com.example.note.R
 import com.example.note.base.BaseFragment
 import com.example.note.databinding.FragmentNoteAddEditBinding
@@ -104,6 +105,11 @@ class NoteAddEditFragment : BaseFragment<NoteEditViewModel, FragmentNoteAddEditB
                 parentFragmentManager.popBackStack()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as? MainActivity)?.setBottomBarVisible(false)
     }
 
     private fun enableRemind(enable: Boolean) {
