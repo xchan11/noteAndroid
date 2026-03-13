@@ -58,9 +58,10 @@ public class SharedPrefsCookiePersistor implements CookiePersistor {
     public void saveAll(Collection<Cookie> cookies) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         for (Cookie cookie : cookies) {
-            if (cookie.persistent()) {
-                editor.putString(createCookieKey(cookie), new SerializableCookie().encode(cookie));
-            }
+            // 数据一致性兜底逻辑：为了让登录在“清后台后”仍然保持，
+            // 我们将所有 Cookie（包括 Session Cookie，如 JSESSIONID）都做持久化。
+            // 具体过期时间仍由后端 Session/Cookie 自己控制。
+            editor.putString(createCookieKey(cookie), new SerializableCookie().encode(cookie));
         }
         editor.apply();
     }

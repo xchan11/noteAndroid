@@ -3,13 +3,13 @@ package com.example.note.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.note.MainActivity
 import com.example.note.auth.AuthPrefs
 import com.example.note.ui.user.LoginActivity
-import com.example.note.MainActivity
 
 /**
- * 启动页：根据本地登录标记简单分流到 Login 或 Main。
- * 如需“自动登录”检查，可在 decideNext() 里增加网络校验逻辑。
+ * 启动页：只根据本地登录标记决定跳 Login 还是 Main。
+ * Session / Cookie 是否过期，由各业务接口在返回 401 时单独处理。
  */
 class SplashActivity : AppCompatActivity() {
 
