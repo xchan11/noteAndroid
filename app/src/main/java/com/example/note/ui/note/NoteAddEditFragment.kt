@@ -10,6 +10,7 @@ import com.example.note.base.BaseFragment
 import com.example.note.databinding.FragmentNoteAddEditBinding
 import com.example.note.model.Note
 import com.example.note.utils.TimeUtils
+import com.example.note.utils.ReminderScheduler
 import com.example.note.utils.toastCover
 import java.util.Calendar
 
@@ -101,7 +102,16 @@ class NoteAddEditFragment : BaseFragment<NoteEditViewModel, FragmentNoteAddEditB
             if (result == null) return@observe
             result.message.toastCover()
             if (result.code == 200 && result.data != null) {
-                sharedVm.addOrReplace(result.data)
+                val saved = result.data
+                // 更新列表
+                sharedVm.addOrReplace(saved)
+                // 先取消旧提醒，再根据新数据决定是否重新设置
+                editingNote?.let { old ->
+                    ReminderScheduler.cancel(requireContext(), old.noteId)
+                }
+                if (saved.remindTime != null) {
+                    ReminderScheduler.schedule(requireContext(), saved)
+                }
                 parentFragmentManager.popBackStack()
             }
         }

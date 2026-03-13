@@ -13,6 +13,7 @@ import com.example.note.model.Note
 import com.example.note.ui.note.NoteAdapter
 import com.example.note.ui.note.NoteAddEditFragment
 import com.example.note.ui.note.NoteViewModel
+import com.example.note.utils.ReminderScheduler
 import com.example.note.utils.toastCover
 
 class NoteFragment : BaseFragment<NoteViewModel, FragmentNoteBinding>() {
@@ -144,6 +145,8 @@ class NoteFragment : BaseFragment<NoteViewModel, FragmentNoteBinding>() {
                 AlertDialog.Builder(requireContext())
                     .setMessage("确认删除该日程？")
                     .setPositiveButton("删除") { _, _ ->
+                        // 先取消本地提醒，再删除后端数据
+                        ReminderScheduler.cancel(requireContext(), note.noteId)
                         // 数据一致性兜底逻辑：仅当接口成功才移除本地
                         viewModel.deleteNote(
                             viewLifecycleOwner,
