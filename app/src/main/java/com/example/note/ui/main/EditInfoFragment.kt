@@ -18,6 +18,9 @@ class EditInfoFragment : BaseFragment<UserViewModel, FragmentEditInfoBinding>() 
         ViewModelProvider(this)[UserViewModel::class.java]
 
     override fun initView() {
+        // 统一标题栏（基类封装）
+        setupToolbar("修改基本信息")
+
         // 预填当前用户名和手机号
         val username = arguments?.getString(ARG_USERNAME).orEmpty()
         val phone = arguments?.getString(ARG_PHONE).orEmpty()

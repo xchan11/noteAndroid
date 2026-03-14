@@ -28,11 +28,14 @@ class NoteAddEditFragment : BaseFragment<NoteEditViewModel, FragmentNoteAddEditB
         ViewModelProvider(this)[NoteEditViewModel::class.java]
 
     override fun initView() {
+        // 统一标题栏（默认“添加日程”，编辑时会在下方改成“编辑日程”）
+        setupToolbar("添加日程")
+
         sharedVm = ViewModelProvider(requireActivity())[NoteViewModel::class.java]
 
         editingNote = arguments?.getSerializable(ARG_NOTE) as? Note
         if (editingNote != null) {
-            dataBinding.tvPageTitle.text = "编辑日程"
+            setToolbarTitle("编辑日程")
             dataBinding.etTitle.setText(editingNote?.title ?: "")
             dataBinding.etContent.setText(editingNote?.content ?: "")
             planTime = editingNote?.planTime ?: planTime
@@ -47,8 +50,6 @@ class NoteAddEditFragment : BaseFragment<NoteEditViewModel, FragmentNoteAddEditB
                 enableRemind(true)
                 dataBinding.tvRemindTime.text = TimeUtils.formatYmdHm(remindTime!!)
             }
-        } else {
-            dataBinding.tvPageTitle.text = "添加日程"
         }
 
         dataBinding.tvPlanTime.text = TimeUtils.formatYmdHm(planTime)

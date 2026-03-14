@@ -6,14 +6,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.ViewDataBinding;
 
 import com.bumptech.glide.Glide;
+import com.example.note.R;
 import com.example.note.manager.GlobalConfig;
 import com.example.note.utils.ToastUtil;
 
@@ -94,6 +97,42 @@ public abstract class BaseFragment<VM extends BaseViewModel, DB extends ViewData
     public void turnToActivity(Class<?> cls){
         if(this.isAdded())
             startActivity(new Intent(requireActivity(),cls));
+    }
+
+    /**
+     * 统一设置带返回键的通用标题栏（item_toolbar）。
+     * Fragment 中默认返回行为为：popBackStack。
+     * 如果当前布局里没有该标题栏，调用也不会崩，只是无效果。
+     */
+    protected void setupToolbar(String title) {
+        if (dataBinding == null) return;
+        View root = dataBinding.getRoot();
+        if (root == null) return;
+        TextView tvTitle = root.findViewById(R.id.tvTitle);
+        ImageView ivBack = root.findViewById(R.id.ivBack);
+        if (tvTitle != null) {
+            tvTitle.setText(title != null ? title : "");
+        }
+        if (ivBack != null) {
+            ivBack.setOnClickListener(v -> {
+                if (isAdded()) {
+                    requireParentFragment().getParentFragmentManager().popBackStack();
+                }
+            });
+        }
+    }
+
+    /**
+     * 仅更新标题文本（适合需要动态修改标题的场景）。
+     */
+    protected void setToolbarTitle(String title) {
+        if (dataBinding == null) return;
+        View root = dataBinding.getRoot();
+        if (root == null) return;
+        TextView tvTitle = root.findViewById(R.id.tvTitle);
+        if (tvTitle != null) {
+            tvTitle.setText(title != null ? title : "");
+        }
     }
     /**
      * 初始化ViewModel

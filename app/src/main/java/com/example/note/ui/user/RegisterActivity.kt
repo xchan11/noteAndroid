@@ -22,6 +22,9 @@ class RegisterActivity : BaseActivity<RegisterViewModel, ActivityRegisterBinding
         ViewModelProvider(this)[RegisterViewModel::class.java]
 
     override fun initView() {
+        // 统一标题栏（基类封装）
+        setupToolbar("注册")
+
         dataBinding.ivPwdToggle.setOnClickListener {
             togglePasswordVisibility(dataBinding.etPassword, dataBinding.ivPwdToggle, isPwdVisible)
             isPwdVisible = !isPwdVisible
@@ -43,7 +46,6 @@ class RegisterActivity : BaseActivity<RegisterViewModel, ActivityRegisterBinding
             if (!preCheck(username, phone, pwd, confirm)) return@setOnClickListener
             viewModel.register(this, username, phone, pwd, confirm)
         }
-        dataBinding.btnBack.setOnClickListener { finish() }
     }
 
     override fun initData() {

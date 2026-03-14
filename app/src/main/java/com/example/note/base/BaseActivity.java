@@ -1,7 +1,9 @@
 package com.example.note.base;
 
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -11,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.example.note.BuildConfig;
 import com.example.note.manager.GlobalConfig;
 import com.example.note.utils.ToastUtil;
+import com.example.note.R;
 
 /**
  * Activity基类（需要用到ViewModel和DataBinding）
@@ -57,6 +60,37 @@ public abstract class BaseActivity<VM extends BaseViewModel, DB extends ViewData
 
     public void toastLong(String tips) {
         ToastUtil.ToastLong(context, tips);
+    }
+
+    /**
+     * 统一设置带返回键的通用标题栏（item_toolbar）。
+     * 如果当前布局里没有该标题栏，调用也不会崩，只是无效果。
+     */
+    protected void setupToolbar(String title) {
+        if (dataBinding == null) return;
+        View root = dataBinding.getRoot();
+        if (root == null) return;
+        TextView tvTitle = root.findViewById(R.id.tvTitle);
+        ImageView ivBack = root.findViewById(R.id.ivBack);
+        if (tvTitle != null) {
+            tvTitle.setText(title != null ? title : "");
+        }
+        if (ivBack != null) {
+            ivBack.setOnClickListener(v -> finish());
+        }
+    }
+
+    /**
+     * 仅更新标题文本（适合需要动态修改标题的场景）。
+     */
+    protected void setToolbarTitle(String title) {
+        if (dataBinding == null) return;
+        View root = dataBinding.getRoot();
+        if (root == null) return;
+        TextView tvTitle = root.findViewById(R.id.tvTitle);
+        if (tvTitle != null) {
+            tvTitle.setText(title != null ? title : "");
+        }
     }
 
     public void logD(String tag, String msg) {

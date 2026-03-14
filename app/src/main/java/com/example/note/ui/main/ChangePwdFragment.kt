@@ -26,6 +26,9 @@ class ChangePwdFragment : BaseFragment<ChangePwdViewModel, FragmentChangePwdBind
     private var confirmVisible = false
 
     override fun initView() {
+        // 统一标题栏（基类封装）
+        setupToolbar("修改密码")
+
         dataBinding.btnUpdatePwd.setOnClickListener {
             val oldPwd = dataBinding.etOldPwd.text.toString().trim()
             val newPwd = dataBinding.etNewPwd.text.toString().trim()
