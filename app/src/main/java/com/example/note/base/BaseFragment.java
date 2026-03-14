@@ -116,7 +116,9 @@ public abstract class BaseFragment<VM extends BaseViewModel, DB extends ViewData
         if (ivBack != null) {
             ivBack.setOnClickListener(v -> {
                 if (isAdded()) {
-                    requireParentFragment().getParentFragmentManager().popBackStack();
+                    // 直接使用当前 Fragment 的父级 FragmentManager，
+                    // 对于挂在 Activity 上的 Fragment 也安全。
+                    getParentFragmentManager().popBackStack();
                 }
             });
         }

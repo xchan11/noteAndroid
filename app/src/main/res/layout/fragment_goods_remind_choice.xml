@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/includeToolbar"
+            layout="@layout/item_toolbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvRemind1"
+                android:layout_width="300dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="40dp"
+                android:background="#FFEBEB"
+                android:gravity="center"
+                android:text="临期1天"
+                android:textColor="#F5222D"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="16dp" />
+
+            <TextView
+                android:id="@+id/tvRemind3"
+                android:layout_width="300dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="40dp"
+                android:background="#FFF7E6"
+                android:gravity="center"
+                android:text="临期3天"
+                android:textColor="#FA8C16"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="16dp" />
+
+            <TextView
+                android:id="@+id/tvRemind7"
+                android:layout_width="300dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="40dp"
+                android:background="#F6FFED"
+                android:gravity="center"
+                android:text="临期7天"
+                android:textColor="#52C41A"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
+

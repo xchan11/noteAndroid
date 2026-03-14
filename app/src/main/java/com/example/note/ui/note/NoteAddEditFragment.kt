@@ -19,8 +19,10 @@ class NoteAddEditFragment : BaseFragment<NoteEditViewModel, FragmentNoteAddEditB
     private lateinit var sharedVm: NoteViewModel
     private var editingNote: Note? = null
 
-    private var planTime: Long = System.currentTimeMillis()
-    private var remindTime: Long? = null
+    // 新建日程默认计划时间为当前时间 + 30 分钟（可手动修改）
+    private var planTime: Long = System.currentTimeMillis() + 30 * 60 * 1000
+    // 新建日程默认提醒时间为当前时间 + 1 小时（可手动修改；勾选提醒时作为初始值）
+    private var remindTime: Long? = System.currentTimeMillis() + 60 * 60 * 1000
 
     override fun getLayoutId(): Int = R.layout.fragment_note_add_edit
 

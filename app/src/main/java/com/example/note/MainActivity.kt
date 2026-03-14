@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import com.example.note.base.BaseNoViewModelActivity
 import com.example.note.databinding.ActivityMainBinding
 import com.example.note.ui.main.BillFragment
-import com.example.note.ui.main.GoodsFragment
+import com.example.note.ui.goods.GoodsCategoryFragment
 import com.example.note.ui.main.NoteFragment
 import com.example.note.ui.main.UserFragment
 
@@ -46,7 +46,7 @@ class MainActivity : BaseNoViewModelActivity<ActivityMainBinding>() {
             R.drawable.ic_tab_goods_sel,
             "物品"
         )
-        fragmentList.add(GoodsFragment())
+        fragmentList.add(GoodsCategoryFragment.newInstance())
 
         dataBinding.bnv.addTab(
             R.drawable.ic_tab_user,
