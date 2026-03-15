@@ -2,6 +2,11 @@ package com.example.note.api;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.note.model.BillCategory;
+import com.example.note.model.BillRecord;
+import com.example.note.model.BudgetInfo;
+import com.example.note.model.ChartCategoryRatioItem;
+import com.example.note.model.ChartTrendItem;
 import com.example.note.model.GoodsCategory;
 import com.example.note.model.GoodsInfo;
 import com.example.note.model.LoginUser;
@@ -18,6 +23,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -118,5 +124,59 @@ public interface ApiService {
     /** 按提醒类型查询物品列表：GET /goods/listByRemind?type=1|3|7 */
     @GET("goods/listByRemind")
     LiveData<RequestType<List<GoodsInfo>>> listGoodsByRemind(@Query("type") int type);
+
+    // ==================== 记账模块 /bill/* ====================
+
+    /** 记账分类列表 GET /bill/category/list */
+    @GET("bill/category/list")
+    LiveData<RequestType<List<BillCategory>>> getBillCategoryList();
+
+    /** 新增记账分类 POST /bill/category/add */
+    @POST("bill/category/add")
+    LiveData<RequestType<BillCategory>> addBillCategory(@Body RequestBody body);
+
+    /** 编辑记账分类 PUT /bill/category/update */
+    @PUT("bill/category/update")
+    LiveData<RequestType<BillCategory>> updateBillCategory(@Body RequestBody body);
+
+    /** 删除记账分类 DELETE /bill/category/delete，请求体 {"categoryId":1} */
+    @HTTP(method = "DELETE", path = "bill/category/delete", hasBody = true)
+    LiveData<RequestType<Void>> deleteBillCategory(@Body RequestBody body);
+
+    /** 最近收支记录 GET /bill/record/recent?limit=10 */
+    @GET("bill/record/recent")
+    LiveData<RequestType<List<BillRecord>>> getBillRecordRecent(@Query("limit") int limit);
+
+    /** 按时间范围查询收支 GET /bill/record/listByTime?startTime=xxx&endTime=xxx */
+    @GET("bill/record/listByTime")
+    LiveData<RequestType<List<BillRecord>>> getBillRecordListByTime(@Query("startTime") String startTime, @Query("endTime") String endTime);
+
+    /** 新增收支记录 POST /bill/record/add */
+    @POST("bill/record/add")
+    LiveData<RequestType<BillRecord>> addBillRecord(@Body RequestBody body);
+
+    /** 编辑收支记录 PUT /bill/record/update */
+    @PUT("bill/record/update")
+    LiveData<RequestType<BillRecord>> updateBillRecord(@Body RequestBody body);
+
+    /** 删除收支记录 DELETE /bill/record/delete，请求体 {"recordId":1} */
+    @HTTP(method = "DELETE", path = "bill/record/delete", hasBody = true)
+    LiveData<RequestType<Void>> deleteBillRecord(@Body RequestBody body);
+
+    /** 月度预算查询 GET /bill/budget/get?yearMonth=yyyy-MM */
+    @GET("bill/budget/get")
+    LiveData<RequestType<BudgetInfo>> getBudget(@Query("yearMonth") String yearMonth);
+
+    /** 设置月度预算 POST /bill/budget/set */
+    @POST("bill/budget/set")
+    LiveData<RequestType<BudgetInfo>> setBudget(@Body RequestBody body);
+
+    /** 收支趋势 GET /bill/chart/trend?timeType=month&yearMonth=yyyy-MM */
+    @GET("bill/chart/trend")
+    LiveData<RequestType<List<ChartTrendItem>>> getChartTrend(@Query("timeType") String timeType, @Query("yearMonth") String yearMonth);
+
+    /** 支出分类占比 GET /bill/chart/categoryRatio?yearMonth=yyyy-MM */
+    @GET("bill/chart/categoryRatio")
+    LiveData<RequestType<List<ChartCategoryRatioItem>>> getChartCategoryRatio(@Query("yearMonth") String yearMonth);
 
 }

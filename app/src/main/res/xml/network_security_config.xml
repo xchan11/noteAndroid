@@ -4,8 +4,8 @@
     <domain-config cleartextTrafficPermitted="true">
         <!-- 允许10.0.2.2（模拟器对应电脑localhost）的明文通信 -->
         <domain includeSubdomains="true">10.0.2.2</domain>
-        <!-- 可选：如果用真机测试，加上电脑的局域网IP（比如192.168.101.99（wifi）手机热点（192.168.162.114）） -->
-        <domain includeSubdomains="true">192.168.162.114</domain>
+        <!-- 可选：如果用真机测试，加上电脑的局域网IP（比如192.168.101.99（wifi）手机流量热点（192.168.162.114）手机连tp开热点192.168.19.114） -->
+        <domain includeSubdomains="true">192.168.101.99</domain>
     </domain-config>
     <!-- 允许所有域名的明文通信（毕设测试可用，上线不推荐）    -->
     <base-config cleartextTrafficPermitted="true" />

@@ -66,6 +66,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.android.material:material:1.4.0")
+    implementation("androidx.core:core-ktx:1.12.0")
 
     //老版lifecycle，可以升级到lifecycle-livedata-ktx / lifecycle-viewmodel-ktx
     api("androidx.lifecycle:lifecycle-extensions:2.2.0")
@@ -90,5 +91,9 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
 
     implementation("com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4")
+
+    //图表库
+    // MPAndroidChart 核心库（最新稳定版）
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
 }
