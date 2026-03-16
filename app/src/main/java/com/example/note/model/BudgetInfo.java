@@ -19,4 +19,7 @@ public class BudgetInfo {
 
     @SerializedName("isOverspend")
     public boolean isOverspend;
+
+    @SerializedName("overspendAmount")
+    public double overspendAmount;
 }
