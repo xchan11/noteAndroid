@@ -22,4 +22,7 @@ public class BudgetInfo {
 
     @SerializedName("overspendAmount")
     public double overspendAmount;
+
+    @SerializedName("count")
+    public Long count; // 复用统计接口时的总数（如 goodsTotal/billTotal/noteTodo）
 }

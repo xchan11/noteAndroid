@@ -179,4 +179,18 @@ public interface ApiService {
     @GET("bill/chart/categoryRatio")
     LiveData<RequestType<List<ChartCategoryRatioItem>>> getChartCategoryRatio(@Query("yearMonth") String yearMonth);
 
+    // ==================== 统计 /stats/* ====================
+
+    /** 物品总数（含过期） GET /stats/goodsTotal */
+    @GET("stats/goodsTotal")
+    LiveData<RequestType<BudgetInfo>> getGoodsTotal();
+
+    /** 记账记录总数 GET /stats/billTotal */
+    @GET("stats/billTotal")
+    LiveData<RequestType<BudgetInfo>> getBillTotal();
+
+    /** 待办日程数 GET /stats/noteTodo */
+    @GET("stats/noteTodo")
+    LiveData<RequestType<BudgetInfo>> getNoteTodo();
+
 }

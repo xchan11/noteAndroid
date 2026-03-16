@@ -18,6 +18,9 @@ class UserViewModel : BaseViewModel() {
     val updateInfoResult = MutableLiveData<RequestType<Void>?>()
     val logoutResult = MutableLiveData<RequestType<Void>?>()
     val cancelResult = MutableLiveData<RequestType<Void>?>()
+    val goodsTotal = MutableLiveData<Long>()
+    val billTotal = MutableLiveData<Long>()
+    val noteTodoTotal = MutableLiveData<Long>()
 
     private fun requestUserInfo(): LiveData<RequestType<LoginUser>> {
         return MyApplication.apiService.getUserInfo()
@@ -35,6 +38,25 @@ class UserViewModel : BaseViewModel() {
                     MyApplication.cookieJar.clear()
                 }
                 result?.message.toastCover()
+            }
+        }
+    }
+
+    fun loadStats() {
+        val owner = lifecycleOwner ?: return
+        MyApplication.apiService.getGoodsTotal().observe(owner) { result ->
+            if (result?.code == 200 && result.data != null) {
+                goodsTotal.postValue(result.data.count ?: 0L)
+            }
+        }
+        MyApplication.apiService.getBillTotal().observe(owner) { result ->
+            if (result?.code == 200 && result.data != null) {
+                billTotal.postValue(result.data.count ?: 0L)
+            }
+        }
+        MyApplication.apiService.getNoteTodo().observe(owner) { result ->
+            if (result?.code == 200 && result.data != null) {
+                noteTodoTotal.postValue(result.data.count ?: 0L)
             }
         }
     }

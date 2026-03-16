@@ -66,11 +66,24 @@ class UserFragment : BaseFragment<UserViewModel, FragmentUserBinding>() {
             }
         }
         viewModel.loadUserInfo()
+
+        viewModel.goodsTotal.observe(viewLifecycleOwner) { count ->
+            dataBinding.tvGoodsCount.text = count.toString()
+        }
+        viewModel.billTotal.observe(viewLifecycleOwner) { count ->
+            dataBinding.tvBillCount.text = count.toString()
+        }
+        viewModel.noteTodoTotal.observe(viewLifecycleOwner) { count ->
+            dataBinding.tvNoteTodoCount.text = count.toString()
+        }
+        viewModel.loadStats()
     }
 
     override fun onResume() {
         super.onResume()
         (activity as? MainActivity)?.setBottomBarVisible(true)
+        // 返回“我的”页面时，重新拉取统计数据，保证数量与日程/物品/记账模块保持同步
+        viewModel.loadStats()
     }
 
     private fun handleLogout() {
