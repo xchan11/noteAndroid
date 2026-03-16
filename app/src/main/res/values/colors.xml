@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- 新主颜色 -->
+    <color name="main_color">#1AABA8</color>
+    <color name="main_grey_bg">#f6f6f6</color>
+    <color name="bg_input">#ADFFFFFF</color>
+
+
+    <!-- 旧主颜色 -->
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#49B9AD</color>
