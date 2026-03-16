@@ -36,6 +36,10 @@ class BillChartFragment : BaseFragment<BillChartViewModel, FragmentBillChartBind
         setupToolbar("收支图表")
         dataBinding.tvCurrentMonth.text = yearMonth
 
+        // 统一关闭 MPAndroidChart 默认“no data”文案，空数据时用我们自己的「暂无数据」TextView
+        dataBinding.chartTrend.setNoDataText("")
+        dataBinding.chartPie.setNoDataText("")
+
         dataBinding.tvPrevMonth.setOnClickListener {
             yearMonth = prevMonth(yearMonth)
             dataBinding.tvCurrentMonth.text = yearMonth
@@ -74,8 +78,20 @@ class BillChartFragment : BaseFragment<BillChartViewModel, FragmentBillChartBind
         chart.description.isEnabled = false
         chart.setTouchEnabled(true)
         chart.setDrawGridBackground(false)
+        if (list.isEmpty()) {
+            chart.clear()
+            chart.invalidate()
+            return
+        }
 
-        val labels = list.map { it.date }.toMutableList()
+        // X 轴只显示“日”，避免 yyyy-MM-dd 过于拥挤
+        val labels = list.map { item ->
+            val d = item.date ?: ""
+            when {
+                d.length >= 2 && d.contains("-") -> d.substringAfterLast("-")
+                else -> d
+            }
+        }.toMutableList()
         val entriesIncome = mutableListOf<Entry>()
         val entriesSpend = mutableListOf<Entry>()
         list.forEachIndexed { i, item ->
@@ -98,6 +114,7 @@ class BillChartFragment : BaseFragment<BillChartViewModel, FragmentBillChartBind
         chart.data = LineData(dsIncome, dsSpend)
         chart.xAxis.position = XAxis.XAxisPosition.BOTTOM
         chart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+        chart.xAxis.granularity = 1f
         chart.xAxis.setAvoidFirstLastClipping(true)
         chart.axisLeft.setDrawGridLines(true)
         chart.legend.isEnabled = true
@@ -111,7 +128,7 @@ class BillChartFragment : BaseFragment<BillChartViewModel, FragmentBillChartBind
         chart.setDrawEntryLabels(true)
 
         if (list.isEmpty()) {
-            chart.data = null
+            chart.clear()
             chart.invalidate()
             return
         }

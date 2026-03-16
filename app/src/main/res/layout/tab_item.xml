@@ -10,17 +10,15 @@
 
     <ImageView
         android:id="@+id/tab_icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:padding="3dp"
-        android:src="@drawable/ic_me_tab"
-        android:layout_gravity="center" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        tools:visibility="gone" />
 
     <TextView
         android:id="@+id/tab_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:textSize="12sp"
         tools:text="50dp"
         android:textColor="@color/main_green6" />

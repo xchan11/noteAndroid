@@ -25,6 +25,7 @@ android {
 
     buildTypes {
         debug {
+            //网络ipv4设置
             buildConfigField("String", "BASE_URL", "\"http://192.168.19.114:8080/\"")
             // 如需允许明文（可选）：isMinifyEnabled = false
         }

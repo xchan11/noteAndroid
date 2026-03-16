@@ -47,7 +47,8 @@ class BottomNavigationView : LinearLayout {
     fun addTab(@DrawableRes startDrawableId: Int, @DrawableRes endDrawableId: Int, text: String?) {
         val tabView = LayoutInflater.from(context).inflate(R.layout.tab_item, this, false)
         val fadingImageView = tabView.findViewById<ImageView>(R.id.tab_icon)
-        fadingImageView.setImageDrawable(resources.getDrawable(startDrawableId))
+        // 需求：底部导航仅显示文字，不显示图标
+        fadingImageView.visibility = View.GONE
         val textView = tabView.findViewById<TextView>(R.id.tab_text)
         textView.text = text
         val index = childCount
@@ -64,11 +65,8 @@ class BottomNavigationView : LinearLayout {
             // 取消之前选中的Tab
             if (selectedTabIndex >= 0) {
                 val previousTab = tabs[selectedTabIndex]
-                (previousTab.view.findViewById<View>(R.id.tab_icon) as ImageView).run {
-                    setImageDrawable(resources.getDrawable(previousTab.startDrawableId))
-                    setPadding(3) //setPadding(3.dp())
-                }
                 (previousTab.view.findViewById<View>(R.id.tab_text) as TextView).run{
+                    // 未选中：保持原本颜色
                     setTextColor(resources.getColor(R.color.main_green6))
                     textSize = 12f
                 }
@@ -76,12 +74,9 @@ class BottomNavigationView : LinearLayout {
 
             // 设置当前选中的Tab
             val currentlySelectedTab = tabs[index]
-            (currentlySelectedTab.view.findViewById<View>(R.id.tab_icon) as ImageView).run{
-                setImageDrawable(resources.getDrawable(currentlySelectedTab.endDrawableId))
-                setPadding(0)
-            }
             (currentlySelectedTab.view.findViewById<View>(R.id.tab_text) as TextView).run{
-                setTextColor(resources.getColor(R.color.main_green7))
+                // 选中：使用 main_color
+                setTextColor(resources.getColor(R.color.main_color))
                 textSize = 14f
             }
             selectedTabIndex = index
