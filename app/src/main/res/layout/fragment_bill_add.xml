@@ -20,14 +20,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="30dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="收支类型"
-                    android:textSize="14sp"
-                    android:textColor="#333333" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <RadioGroup
                     android:id="@+id/rgType"
@@ -56,8 +56,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="分类"
-                    android:textSize="14sp"
-                    android:textColor="#333333" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -87,8 +87,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="金额（必填）"
-                    android:textSize="14sp"
-                    android:textColor="#333333" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/etAmount"
@@ -104,8 +104,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="备注（可选）"
-                    android:textSize="14sp"
-                    android:textColor="#333333" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/etRemark"
@@ -121,8 +121,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="记账时间"
-                    android:textSize="14sp"
-                    android:textColor="#333333" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvRecordTime"
@@ -137,11 +137,15 @@
                 <Button
                     android:id="@+id/btnSave"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="24dp"
-                    android:background="#1890FF"
-                    android:text="保存"
-                    android:textColor="@android:color/white" />
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="记账"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:background="@drawable/bg_button"
+                    android:paddingVertical="13dp"
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginTop="15dp" />
 
             </LinearLayout>
         </LinearLayout>

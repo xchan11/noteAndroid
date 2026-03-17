@@ -91,12 +91,6 @@ class NoteFragment : BaseFragment<NoteViewModel, FragmentNoteBinding>() {
                 .commit()
         }
 
-        // 手动兜底：点击刷新按钮拉全量 /note/list
-        dataBinding.tvRefresh.setOnClickListener {
-            viewModel.loadAll(showToastOnFail = true)
-            "已刷新".toastCover()
-        }
-
         attachSwipeToDelete(dataBinding.rvTodo, isTodo = true)
         attachSwipeToDelete(dataBinding.rvDone, isTodo = false)
     }

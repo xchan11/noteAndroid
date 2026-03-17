@@ -4,6 +4,9 @@
     <color name="main_color">#1AABA8</color>
     <color name="main_grey_bg">#f6f6f6</color>
     <color name="bg_input">#ADFFFFFF</color>
+    <color name="blue">#E6F7FF</color>
+    <color name="green">#F6FFED</color>
+    <color name="orange">#FFF7E6</color>
 
 
     <!-- 旧主颜色 -->
@@ -87,11 +90,11 @@
     <color name="me_split_line_color">#d0d0d0</color>
     <color name="red">#C12929</color>
     <color name="red2">#F24B4B</color>
-    <color name="orange">#CD7726</color>
+<!--    <color name="orange">#CD7726</color>-->
     <color name="yellow">#E6C830</color>
-    <color name="green">#639D47</color>
+<!--    <color name="green">#639D47</color>-->
     <color name="blueGreen">#38C5B4</color>
-    <color name="blue">#3771CD</color>
+<!--    <color name="blue">#3771CD</color>-->
     <color name="blue2">#33b5e5</color>
     <color name="blue3">#4878C4</color>
     <color name="blue4">#3771CD</color>

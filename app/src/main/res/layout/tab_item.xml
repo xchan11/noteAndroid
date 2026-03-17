@@ -19,7 +19,7 @@
         android:id="@+id/tab_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
+        android:textSize="16sp"
         tools:text="50dp"
         android:textColor="@color/main_green6" />
 </LinearLayout>

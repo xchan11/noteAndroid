@@ -6,56 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/main_grey_bg">*** End Patch```} ***!
-
-        <!-- 顶部三个操作入口 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp">
-
-            <TextView
-                android:id="@+id/tvAddCategory"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="#E6F7FF"
-                android:text="新增种类"
-                android:textColor="#1890FF"
-                android:textSize="14sp" />
-
-            <View
-                android:layout_width="8dp"
-                android:layout_height="0dp" />
-
-            <TextView
-                android:id="@+id/tvAddGoods"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="#F6FFED"
-                android:text="新增物品"
-                android:textColor="#52C41A"
-                android:textSize="14sp" />
-
-            <View
-                android:layout_width="8dp"
-                android:layout_height="0dp" />
-
-            <TextView
-                android:id="@+id/tvRemindGoods"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="#FFF7E6"
-                android:text="临期物品"
-                android:textColor="#FA8C16"
-                android:textSize="14sp" />
-        </LinearLayout>
+        android:background="@color/main_grey_bg"
+        android:padding="20dp">
 
         <!-- 分类网格列表 -->
         <FrameLayout
@@ -67,7 +19,6 @@
                 android:id="@+id/rvCategory"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="12dp"
                 android:clipToPadding="false"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 android:scrollbars="vertical" />
@@ -82,6 +33,54 @@
                 android:textSize="14sp"
                 android:visibility="gone" />
         </FrameLayout>
+
+        <!-- 三个操作入口 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvAddCategory"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/bg_blue"
+                android:text="新增种类"
+                android:textColor="#1890FF"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="0dp" />
+
+            <TextView
+                android:id="@+id/tvAddGoods"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/bg_green"
+                android:text="新增物品"
+                android:textColor="#52C41A"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="0dp" />
+
+            <TextView
+                android:id="@+id/tvRemindGoods"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/bg_orange"
+                android:text="临期物品"
+                android:textColor="#FA8C16"
+                android:textSize="14sp" />
+        </LinearLayout>
 
     </LinearLayout>
 </layout>

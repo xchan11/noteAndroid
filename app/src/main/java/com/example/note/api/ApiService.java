@@ -193,4 +193,10 @@ public interface ApiService {
     @GET("stats/noteTodo")
     LiveData<RequestType<BudgetInfo>> getNoteTodo();
 
+    // ==================== 收支记录 - 按月全量列表 ====================
+
+    /** 按月查询全部收支记录 GET /bill/record/listAllByMonth?yearMonth=yyyy-MM */
+    @GET("bill/record/listAllByMonth")
+    LiveData<RequestType<List<BillRecord>>> getBillRecordListAllByMonth(@Query("yearMonth") String yearMonth);
+
 }

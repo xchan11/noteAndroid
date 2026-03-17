@@ -47,6 +47,19 @@ class BillFragment : BaseFragment<BillViewModel, FragmentBillBinding>() {
                 .addToBackStack(null)
                 .commit()
         }
+        dataBinding.iconToChart.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fl_fragment_container, BillChartFragment.newInstance())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        dataBinding.iconToRecent.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fl_fragment_container, BillAllRecordFragment.newInstance())
+                .addToBackStack(null)
+                .commit()
+        }
 
         dataBinding.rvRecent.layoutManager = LinearLayoutManager(requireContext())
         recordAdapter = BillRecordAdapter { record ->

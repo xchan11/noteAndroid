@@ -123,7 +123,7 @@
                     android:layout_marginTop="4dp"/>
 
                 <ImageView
-                    android:id="@+id/icon1"
+                    android:id="@+id/iconToChart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/arrow_right_black"
@@ -156,7 +156,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
-                android:id="@+id/icon2"
+                android:id="@+id/iconToRecent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/arrow_right_black"

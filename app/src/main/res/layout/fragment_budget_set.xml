@@ -15,14 +15,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="30dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="当前月份"
-                android:textSize="14sp"
-                android:textColor="#333333" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvYearMonth"
@@ -38,8 +38,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="月度总预算"
-                android:textSize="14sp"
-                android:textColor="#333333" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etBudget"
@@ -53,11 +53,15 @@
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="24dp"
-                android:background="#1890FF"
-                android:text="保存"
-                android:textColor="@android:color/white" />
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:background="@drawable/bg_button"
+                android:paddingVertical="13dp"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="15dp" />
 
         </LinearLayout>
     </LinearLayout>
