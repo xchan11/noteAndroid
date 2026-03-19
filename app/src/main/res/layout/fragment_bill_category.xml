@@ -11,17 +11,6 @@
             android:id="@+id/includeToolbar"
             layout="@layout/item_toolbar" />
 
-        <TextView
-            android:id="@+id/tvAddCategory"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_margin="12dp"
-            android:background="#1890FF"
-            android:gravity="center"
-            android:text="新增分类"
-            android:textColor="@android:color/white"
-            android:textSize="14sp" />
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -44,6 +33,20 @@
                 android:textSize="14sp"
                 android:visibility="gone" />
         </FrameLayout>
+
+        <Button
+            android:id="@+id/tvAddCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_button"
+            android:gravity="center"
+            android:paddingVertical="13dp"
+            android:text="新增分类"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
     </LinearLayout>
 </layout>

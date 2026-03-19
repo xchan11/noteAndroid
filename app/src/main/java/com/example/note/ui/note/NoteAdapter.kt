@@ -1,7 +1,9 @@
 package com.example.note.ui.note
 
+import android.graphics.Paint
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.note.R
@@ -17,7 +19,21 @@ class NoteAdapter(
     private val lastToggleAt = hashMapOf<Int, Long>() // noteId -> last click time
 
     override fun convert(holder: BaseViewHolder, item: Note) {
-        holder.getView<TextView>(R.id.tvTitle).text = item.title ?: ""
+        val tvTitle = holder.getView<TextView>(R.id.tvTitle)
+        tvTitle.text = item.title ?: ""
+
+        // 已完成：字体更灰 + 横线划掉
+        val done = item.status == 1
+        tvTitle.setTextColor(
+            if (done) ContextCompat.getColor(holder.itemView.context, R.color.greyText)
+            else ContextCompat.getColor(holder.itemView.context, R.color.text_black_color)
+        )
+        tvTitle.paintFlags = if (done) {
+            tvTitle.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        } else {
+            tvTitle.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+        }
+
         holder.getView<TextView>(R.id.tvContent).text = item.content ?: ""
         holder.getView<TextView>(R.id.tvTime).text = TimeUtils.formatYmdHm(item.planTime)
 

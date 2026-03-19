@@ -87,7 +87,7 @@ class BillFragment : BaseFragment<BillViewModel, FragmentBillBinding>() {
             dataBinding.tvTotalSpend.text = "已支出：%.2f".format(info.totalSpend)
             if (info.isOverspend) {
                 // 使用后端返回的 overspendAmount 展示超支金额，无需前端再计算
-                dataBinding.tvRemainAmount.text = "本月已超支 %.2f 元".format(info.overspendAmount)
+                dataBinding.tvRemainAmount.text = "本月已超支 %.2f".format(info.overspendAmount)
                 dataBinding.tvRemainAmount.setTextColor(0xFFF5222D.toInt())
             } else {
                 dataBinding.tvRemainAmount.text = "剩余：%.2f".format(info.remainAmount)

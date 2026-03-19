@@ -13,6 +13,7 @@ import com.example.note.base.BaseFragment
 import com.example.note.databinding.FragmentBillCategoryBinding
 import com.example.note.model.BillCategory
 import com.example.note.utils.toastCover
+import androidx.recyclerview.widget.GridLayoutManager
 
 /**
  * 记账分类管理：列表、新增、编辑、删除（有流水的分类后端会拒绝删除）。
@@ -29,7 +30,8 @@ class BillCategoryFragment : BaseFragment<BillCategoryViewModel, FragmentBillCat
     override fun initView() {
         setupToolbar("记账分类")
 
-        dataBinding.rvCategory.layoutManager = LinearLayoutManager(requireContext())
+        // 网格展示分类：和 GoodsCategoryFragment 保持一致
+        dataBinding.rvCategory.layoutManager = GridLayoutManager(requireContext(), 2)
         adapter = BillCategoryAdapter { category ->
             showLongClickDialog(category)
         }

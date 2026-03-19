@@ -10,7 +10,7 @@
         android:background="@color/main_grey_bg">
 
         <!-- 本月预算（卡片） -->
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutBudget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,26 +21,36 @@
             android:focusable="true">
 
             <TextView
+                android:id="@+id/text3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="本月预算"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tvBudgetAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/text3"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="16dp"/>
 
             <LinearLayout
+                android:id="@+id/layout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="4dp">
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text3">
 
-                <TextView
-                    android:id="@+id/tvBudgetAmount"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="0"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvTotalSpend"
@@ -59,7 +69,7 @@
                     android:textSize="14sp"
                     android:textColor="#52C41A" />
             </LinearLayout>
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- 本月收支概览（卡片） -->
         <LinearLayout
@@ -108,6 +118,7 @@
                     android:textColor="#F5222D"
                     app:layout_constraintTop_toBottomOf="@id/text2"
                     app:layout_constraintStart_toEndOf="@+id/tvMonthIncome"
+                    app:layout_constraintEnd_toStartOf="@+id/tvToChart"
                     android:layout_marginTop="4dp"/>
 
                 <TextView
@@ -119,7 +130,7 @@
                     android:textSize="13sp"
                     android:textColor="#1890FF"
                     app:layout_constraintTop_toBottomOf="@id/text2"
-                    app:layout_constraintStart_toEndOf="@id/tvMonthExpense"
+                    app:layout_constraintEnd_toStartOf="@+id/iconToChart"
                     android:layout_marginTop="4dp"/>
 
                 <ImageView

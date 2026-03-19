@@ -82,8 +82,12 @@ class BillAddFragment : BaseFragment<BillAddViewModel, FragmentBillAddBinding>()
             }
             dataBinding.btnSave.isEnabled = true
             val names = list.map { it.categoryName ?: "" }
-            val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, names).apply {
-                setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            val adapter = ArrayAdapter(
+                requireContext(),
+                R.layout.spinner_item_category,
+                names
+            ).apply {
+                setDropDownViewResource(R.layout.spinner_dropdown_item_category)
             }
             dataBinding.spCategory.adapter = adapter
             editingRecord?.let { r ->

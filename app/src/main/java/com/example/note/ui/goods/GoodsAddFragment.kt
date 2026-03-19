@@ -65,10 +65,10 @@ class GoodsAddFragment : BaseFragment<GoodsAddEditViewModel, FragmentGoodsAddBin
                 val names = categories.map { it.categoryName }
                 val adapter = ArrayAdapter(
                     requireContext(),
-                    android.R.layout.simple_spinner_item,
+                    R.layout.spinner_item_category,
                     names
                 ).also {
-                    it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    it.setDropDownViewResource(R.layout.spinner_dropdown_item_category)
                 }
                 dataBinding.spCategory.adapter = adapter
             }

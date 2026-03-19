@@ -1,7 +1,6 @@
 package com.example.note.ui.goods
 
 import android.app.AlertDialog
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
@@ -13,9 +12,6 @@ import com.example.note.R
 import com.example.note.base.BaseFragment
 import com.example.note.databinding.FragmentGoodsCategoryBinding
 import com.example.note.model.GoodsCategory
-import com.example.note.ui.goods.GoodsAddFragment
-import com.example.note.ui.goods.GoodsListFragment
-import com.example.note.ui.goods.GoodsRemindChoiceFragment
 import com.example.note.utils.toastCover
 
 class GoodsCategoryFragment : BaseFragment<GoodsCategoryViewModel, FragmentGoodsCategoryBinding>() {
