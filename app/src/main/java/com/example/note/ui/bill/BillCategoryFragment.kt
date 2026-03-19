@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.note.MainActivity
 import com.example.note.R
 import com.example.note.base.BaseFragment
@@ -32,9 +31,18 @@ class BillCategoryFragment : BaseFragment<BillCategoryViewModel, FragmentBillCat
 
         // 网格展示分类：和 GoodsCategoryFragment 保持一致
         dataBinding.rvCategory.layoutManager = GridLayoutManager(requireContext(), 2)
-        adapter = BillCategoryAdapter { category ->
-            showLongClickDialog(category)
-        }
+        adapter = BillCategoryAdapter(
+            onItemClick = { category ->
+                parentFragmentManager.beginTransaction()
+                    .replace(
+                        R.id.fl_fragment_container,
+                        BillAllRecordFragment.newForCategory(category.categoryId, category.categoryName ?: "分类")
+                    )
+                    .addToBackStack(null)
+                    .commit()
+            },
+            onItemLongClick = { category -> showLongClickDialog(category) }
+        )
         dataBinding.rvCategory.adapter = adapter
 
         dataBinding.tvAddCategory.setOnClickListener { showAddDialog() }

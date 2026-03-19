@@ -27,6 +27,17 @@ class BillAllRecordViewModel : BaseViewModel() {
         }
     }
 
+    fun loadByCategory(categoryId: Long) {
+        val owner = lifecycleOwner ?: return
+        MyApplication.apiService.getBillRecordListByCategory(categoryId).observe(owner) { result ->
+            if (result != null && result.code == 200) {
+                recordList.postValue(result.data?.list ?: emptyList())
+            } else {
+                (result?.message ?: "加载失败，请稍后重试").toastCover()
+            }
+        }
+    }
+
     fun deleteRecord(
         owner: LifecycleOwner,
         recordId: Long,

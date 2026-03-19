@@ -24,6 +24,9 @@ class BillAllRecordFragment :
     private lateinit var adapter: BillRecordAdapter
     private var yearMonth: String = TimeUtils.getCurrentYearMonth()
     private var lastSwitchClickTime = 0L
+    private var mode: String = MODE_MONTH
+    private var categoryId: Long = -1L
+    private var categoryName: String = ""
 
     override fun getLayoutId(): Int = R.layout.fragment_bill_all_record
 
@@ -31,7 +34,8 @@ class BillAllRecordFragment :
         ViewModelProvider(this)[BillAllRecordViewModel::class.java]
 
     override fun initView() {
-        setupToolbar("收支记录")
+        readArgs()
+        setupToolbar(if (isCategoryMode()) categoryName.ifBlank { "分类收支" } else "收支记录")
 
         dataBinding.rvAll.layoutManager = LinearLayoutManager(requireContext())
         adapter = BillRecordAdapter { record ->
@@ -44,15 +48,25 @@ class BillAllRecordFragment :
         dataBinding.rvAll.adapter = adapter
         attachSwipeToDelete(dataBinding.rvAll)
 
-        updateMonthText()
+        if (isCategoryMode()) {
+            // 分类模式：不需要月份切换，标题直接显示分类名。
+            dataBinding.tvPrevMonth.visibility = View.GONE
+            dataBinding.tvNextMonth.visibility = View.GONE
+            dataBinding.tvCurrentMonth.text = "${categoryName.ifBlank { "当前" }}分类"
+            dataBinding.tvEmptyAll.text = "该分类暂无收支记录"
+        } else {
+            updateMonthText()
+        }
 
         dataBinding.tvPrevMonth.setOnClickListener {
+            if (isCategoryMode()) return@setOnClickListener
             if (!canSwitchMonth()) return@setOnClickListener
             yearMonth = prevMonth(yearMonth)
             updateMonthText()
             viewModel.loadByMonth(yearMonth)
         }
         dataBinding.tvNextMonth.setOnClickListener {
+            if (isCategoryMode()) return@setOnClickListener
             if (!canSwitchMonth()) return@setOnClickListener
             // 不能超过当前月
             val current = TimeUtils.getCurrentYearMonth()
@@ -73,13 +87,29 @@ class BillAllRecordFragment :
             dataBinding.tvEmptyAll.visibility =
                 if (list.isNullOrEmpty()) View.VISIBLE else View.GONE
         }
-        viewModel.loadByMonth(yearMonth)
+        loadDataByMode()
     }
 
     override fun onResume() {
         super.onResume()
         (activity as? MainActivity)?.setBottomBarVisible(false)
-        viewModel.loadByMonth(yearMonth)
+        loadDataByMode()
+    }
+
+    private fun readArgs() {
+        mode = arguments?.getString(ARG_MODE) ?: MODE_MONTH
+        categoryId = arguments?.getLong(ARG_CATEGORY_ID, -1L) ?: -1L
+        categoryName = arguments?.getString(ARG_CATEGORY_NAME) ?: ""
+    }
+
+    private fun isCategoryMode(): Boolean = mode == MODE_CATEGORY && categoryId > 0
+
+    private fun loadDataByMode() {
+        if (isCategoryMode()) {
+            viewModel.loadByCategory(categoryId)
+        } else {
+            viewModel.loadByMonth(yearMonth)
+        }
     }
 
     private fun updateMonthText() {
@@ -189,7 +219,25 @@ class BillAllRecordFragment :
     }
 
     companion object {
-        fun newInstance() = BillAllRecordFragment()
+        private const val ARG_MODE = "arg_mode"
+        private const val ARG_CATEGORY_ID = "arg_category_id"
+        private const val ARG_CATEGORY_NAME = "arg_category_name"
+        private const val MODE_MONTH = "month"
+        private const val MODE_CATEGORY = "category"
+
+        fun newInstance() = BillAllRecordFragment().apply {
+            arguments = android.os.Bundle().apply {
+                putString(ARG_MODE, MODE_MONTH)
+            }
+        }
+
+        fun newForCategory(categoryId: Long, categoryName: String) = BillAllRecordFragment().apply {
+            arguments = android.os.Bundle().apply {
+                putString(ARG_MODE, MODE_CATEGORY)
+                putLong(ARG_CATEGORY_ID, categoryId)
+                putString(ARG_CATEGORY_NAME, categoryName)
+            }
+        }
     }
 }
 

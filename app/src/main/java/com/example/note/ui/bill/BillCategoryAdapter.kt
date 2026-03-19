@@ -9,11 +9,13 @@ import com.example.note.model.BillCategory
  * 记账分类列表 Adapter。
  */
 class BillCategoryAdapter(
+    private val onItemClick: (BillCategory) -> Unit,
     private val onItemLongClick: (BillCategory) -> Unit
 ) : BaseQuickAdapter<BillCategory, BaseViewHolder>(R.layout.item_bill_category) {
 
     override fun convert(holder: BaseViewHolder, item: BillCategory) {
         holder.setText(R.id.tvCategoryName, item.categoryName ?: "")
+        holder.itemView.setOnClickListener { onItemClick(item) }
         holder.itemView.setOnLongClickListener {
             onItemLongClick(item)
             true

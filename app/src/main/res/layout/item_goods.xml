@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_white_corner"
-    android:paddingVertical="8dp"
-    android:paddingHorizontal="4dp">
+    android:padding="12dp">
 
     <TextView
         android:id="@+id/tvGoodsName"
@@ -44,7 +43,7 @@
         android:textColor="@android:color/white"
         android:textSize="11sp"
         android:background="@drawable/shape_priority_blue"
-        app:layout_constraintTop_toTopOf="@id/tvShelfInfo"
+        app:layout_constraintTop_toTopOf="@id/ivArrow"
         app:layout_constraintEnd_toStartOf="@id/ivArrow" />
 
     <TextView

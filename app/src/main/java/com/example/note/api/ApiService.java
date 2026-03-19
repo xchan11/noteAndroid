@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.note.model.BillCategory;
 import com.example.note.model.BillRecord;
+import com.example.note.model.BillRecordListData;
 import com.example.note.model.BudgetInfo;
 import com.example.note.model.ChartCategoryRatioItem;
 import com.example.note.model.ChartTrendItem;
@@ -26,7 +27,6 @@ import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -198,5 +198,9 @@ public interface ApiService {
     /** 按月查询全部收支记录 GET /bill/record/listAllByMonth?yearMonth=yyyy-MM */
     @GET("bill/record/listAllByMonth")
     LiveData<RequestType<List<BillRecord>>> getBillRecordListAllByMonth(@Query("yearMonth") String yearMonth);
+
+    /** 按分类查询全部收支记录 GET /bill/record/category?categoryId=1 */
+    @GET("bill/record/category")
+    LiveData<RequestType<BillRecordListData>> getBillRecordListByCategory(@Query("categoryId") long categoryId);
 
 }
