@@ -1,6 +1,7 @@
 package com.example.note.ui.main
 
 import android.app.AlertDialog
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -98,9 +99,11 @@ class NoteFragment : BaseFragment<NoteViewModel, FragmentNoteBinding>() {
     override fun initData() {
         viewModel.todoList.observe(viewLifecycleOwner) { list ->
             todoAdapter.setList(list)
+            dataBinding.tvEmptyTodo.visibility = if (list.isNullOrEmpty()) View.VISIBLE else View.GONE
         }
         viewModel.doneList.observe(viewLifecycleOwner) { list ->
             doneAdapter.setList(list)
+            dataBinding.tvEmptyDone.visibility = if (list.isNullOrEmpty()) View.VISIBLE else View.GONE
         }
         viewModel.loadAll()
     }

@@ -190,9 +190,10 @@
 
                 <TextView
                     android:id="@+id/tvEmptyBill"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
                     android:text="暂无收支记录"
                     android:textColor="#999999"
                     android:textSize="14sp"
